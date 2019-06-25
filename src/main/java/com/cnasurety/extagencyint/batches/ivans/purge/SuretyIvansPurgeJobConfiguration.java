@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+import com.cnasurety.extagencyint.batches.ivans.purge.config.ApplicationConfig;
 import com.cnasurety.extagencyint.batches.ivans.purge.service.PurgeService;
 
 @Configuration
@@ -34,6 +36,9 @@ public class SuretyIvansPurgeJobConfiguration {
 
     @Autowired
     PurgeService purgeService;
+    
+    @Autowired
+    ApplicationConfig applicationConfig;
        
     
     @Bean
@@ -42,7 +47,7 @@ public class SuretyIvansPurgeJobConfiguration {
         LOGGER.info(message);
 
         return (stepContribution, chunkContext) -> {
-        	purgeService.purgeTables();
+        	purgeService.purgeTables(applicationConfig.getDays());
             return RepeatStatus.FINISHED;
         };
     }

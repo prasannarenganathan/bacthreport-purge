@@ -18,6 +18,7 @@ import com.cnasurety.extagencyint.batches.ivans.purge.model.Notification;
 public interface NotificationRepository extends JpaRepository<Notification, String> {
     
     @Procedure( name = "deleteTransactionTables")
-    void purgeTransactionTables();
+    void purgeTransactionTables(@Param("days")String days);
+
    
 }

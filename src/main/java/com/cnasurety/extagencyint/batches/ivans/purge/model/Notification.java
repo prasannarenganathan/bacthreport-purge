@@ -2,18 +2,30 @@ package com.cnasurety.extagencyint.batches.ivans.purge.model;
 
 
 import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "\"NOTIFICATION_TBL\"", schema = "workflow")
+/*@NamedStoredProcedureQueries({
+	   @NamedStoredProcedureQuery(name = "deleteTransactionTables", 
+	                              procedureName = "workflow.purgeTransactionTables"
+	                              
+	                              )
+	})*/
 @NamedStoredProcedureQueries({
 	   @NamedStoredProcedureQuery(name = "deleteTransactionTables", 
-	                              procedureName = "workflow.purgeTransactionTables")
+	                              procedureName = "workflow.purgeTransactionTables",
+	                              parameters = {
+	                                 @StoredProcedureParameter(mode = ParameterMode.IN, name = "days", type = String.class)
+	                              })
 	})
 public class Notification {
 	@Id

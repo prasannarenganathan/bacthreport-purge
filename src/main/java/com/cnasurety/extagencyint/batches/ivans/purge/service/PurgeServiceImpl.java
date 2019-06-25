@@ -14,8 +14,8 @@ public class PurgeServiceImpl implements PurgeService {
     @Autowired
     NotificationRepository notificationRepository;
 
-	public void purgeTables() {
-		notificationRepository.purgeTransactionTables();
+	public void purgeTables(String days) {
+		notificationRepository.purgeTransactionTables( days);
 		
 	}
 }
