@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("batch.purge")
 @PropertySources(value = {@PropertySource(value = "classpath:application.properties")})
 public class ApplicationConfig { 
-	String days;
+	int days;
 
-	public String getDays() {
+	public int getDays() {
 		return days;
 	}
 
-	public void setDays(String days) {
+	public void setDays(int days) {
 		this.days = days;
 	}
 
